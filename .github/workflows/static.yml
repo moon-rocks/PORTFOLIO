@@ -31,9 +31,13 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build project
+        env:
+          # यहाँ अपनी असली Supabase डिटेल्स पेस्ट करें (बिना कोट्स के)
+          VITE_SUPABASE_URL: your_actual_supabase_url_here
+          VITE_SUPABASE_PUBLISHABLE_KEY: your_actual_supabase_key_here
         run: npm run build
 
       - name: Setup Pages

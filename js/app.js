@@ -14,7 +14,7 @@ let resizeTimer = null;
 const defaultSite = {
   name: "Portfolio",
   initials: "PORTFOLIO",
-  profile_image_url: "/assets/images/photo.png",
+  profile_image_url: "./assets/images/photo.png",
   about_short:
     "Designing and building high-performance, memorable web experiences with modern architecture and technical SEO precision.",
   about_lead:

@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { writeFile } from "node:fs/promises";
+import { copyFile, mkdir, writeFile } from "node:fs/promises";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config();
@@ -13,8 +13,10 @@ if (!url || !publishableKey) {
   );
 }
 
-await writeFile(
-  "runtime-config.js",
-  `window.__SUPABASE_CONFIG__ = ${JSON.stringify({ url, publishableKey })};\n`,
-  "utf8",
-);
+const config = `window.__SUPABASE_CONFIG__ = ${JSON.stringify({ url, publishableKey })};\n`;
+await writeFile("runtime-config.js", config, "utf8");
+await mkdir("public", { recursive: true });
+await writeFile("public/runtime-config.js", config, "utf8");
+await mkdir("public/js", { recursive: true });
+await copyFile("js/supabase.js", "public/js/supabase.js");
+await copyFile("js/app.js", "public/js/app.js");

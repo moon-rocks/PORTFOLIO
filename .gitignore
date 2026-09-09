@@ -8,3 +8,4 @@ coverage/
 !.env.example
 runtime-config.js
 public/runtime-config.js
+public/js/

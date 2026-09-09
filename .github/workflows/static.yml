@@ -28,16 +28,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
         env:
-          # यहाँ अपनी असली Supabase डिटेल्स पेस्ट करें (बिना कोट्स के)
-          VITE_SUPABASE_URL: your_actual_supabase_url_here
-          VITE_SUPABASE_PUBLISHABLE_KEY: your_actual_supabase_key_here
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run build
 
       - name: Setup Pages
@@ -46,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: "./dist"
 
       - name: Deploy to GitHub Pages
         id: deployment

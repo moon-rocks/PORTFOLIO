@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio — Creative Developer",
+  "description": "Personal creative developer portfolio powered by Supabase CMS with smooth GSAP animations and a custom neon-green cursor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

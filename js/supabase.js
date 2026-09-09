@@ -1,7 +1,8 @@
-/* Supabase browser configuration. Public anon/publishable keys are safe to expose in a browser when RLS is correctly configured. */
+/* Supabase browser configuration loaded from the ignored build-time runtime config. */
 (() => {
-  const SUPABASE_URL = "https://msrzuwobdyljltrfqmyh.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publishable_BEn7p_a_xDybamBL6-gPmw_pQ6ULVsP";
+  const runtimeConfig = window.__SUPABASE_CONFIG__ || {};
+  const SUPABASE_URL = runtimeConfig.url || "";
+  const SUPABASE_ANON_KEY = runtimeConfig.publishableKey || "";
   const sdk = window.supabase;
 
   let client = null;
@@ -25,5 +26,9 @@
   window.supabase = client;
   window.SUPABASE_URL = SUPABASE_URL;
   window.SUPABASE_ANON_KEY = SUPABASE_ANON_KEY;
-  window.isConfigured = () => !!client && typeof client.from === "function";
+  window.isConfigured = () =>
+    !!client &&
+    typeof client.from === "function" &&
+    !!SUPABASE_URL &&
+    !!SUPABASE_ANON_KEY;
 })();

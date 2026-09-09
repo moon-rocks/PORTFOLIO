@@ -20,7 +20,11 @@ View your app in AI Studio: https://ai.studio/apps/e0965a9b-3fb0-445d-ad62-174b1
 
 ## Supabase CMS setup
 
-The static portfolio is wired to the supplied Supabase project. The browser uses the public publishable/anon key only; authorization is enforced by Row Level Security.
+The static portfolio is wired to Supabase through an ignored build-time runtime config. Copy `.env.example` to `.env.local` and set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. The `predev` and `prebuild` scripts generate `runtime-config.js`, which is ignored by Git.
+
+For GitHub Actions, Vercel, Netlify, or another CI host, define the same two environment variables in the deployment settings before running `npm run build`. Never add `.env.local` or `runtime-config.js` to Git.
+
+The publishable/anon key is intended for browser use and will still be visible in the built website. It is not a service-role secret. Protect the database with Supabase RLS and never expose `service_role`, private API keys, `RESEND_API_KEY`, or webhook secrets in frontend code.
 
 1. Run `supabase/migrations/001_portfolio_cms.sql` in the Supabase SQL Editor.
 2. Make sure the Supabase Auth user for the configured admin email exists and has the intended password. Do not put the password in source code.

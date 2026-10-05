@@ -17,6 +17,10 @@ const config = `window.__SUPABASE_CONFIG__ = ${JSON.stringify({ url, publishable
 await writeFile("runtime-config.js", config, "utf8");
 await mkdir("public", { recursive: true });
 await writeFile("public/runtime-config.js", config, "utf8");
+await mkdir("public/assets/images", { recursive: true });
+await copyFile("assets/images/photo.png", "public/assets/images/photo.png");
 await mkdir("public/js", { recursive: true });
 await copyFile("js/supabase.js", "public/js/supabase.js");
 await copyFile("js/app.js", "public/js/app.js");
+await copyFile("js/custom-cursor.js", "public/js/custom-cursor.js");
+await copyFile("js/scroll-reveal.js", "public/js/scroll-reveal.js");

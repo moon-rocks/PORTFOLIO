@@ -12,6 +12,14 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          education: path.resolve(__dirname, 'education/index.html'),
+        },
+      },
+    },
     server: {
       hmr: process.env.DISABLE_HMR ? false : true,
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
